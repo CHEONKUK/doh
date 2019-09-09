@@ -16,7 +16,6 @@
 		margin: 30px auto;
 		text-align: center;
 		width:30%;
-		height: 66.8vh
 	}
 	
 	.alter_form_div div{
@@ -48,13 +47,10 @@
 		border-radius: 50px;
 		margin: 20px;
 		background-color: gold;
-		color: #000;
-		font-weight: 300;
 	}
 	
 	.alter_form_div button:hover{
-		background-color: #000;
-		color:gold;
+		background-color: yellow;
 		cursor: pointer;
 	}
 	

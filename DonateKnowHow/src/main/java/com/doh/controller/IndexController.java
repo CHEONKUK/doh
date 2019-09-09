@@ -176,9 +176,4 @@ public class IndexController {
 		return "/member/alterMsg";
 	}
 	
-	@RequestMapping("/ourteam")
-	public String ourteam() {
-		return "ourTeam";
-	}
-	
 }

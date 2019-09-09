@@ -1,9 +1,5 @@
 package com.doh.domain;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
-import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -26,14 +22,10 @@ public class QCriteria {
 	
 	private boolean pre, next;
 	
-	private String searchType;
-	private String keyword;
 	
-	public QCriteria(int num, int total, String searchType, String keyword){
+	public QCriteria(int num, int total) {
 		this.num = num;
 		this.total = total;
-		this.searchType = searchType;
-		this.keyword = keyword;
 		
 		if(num != 1) {
 			page = ( pageView * num ) - pageView;
@@ -48,21 +40,14 @@ public class QCriteria {
 	    }
 		
 		this.pre = num > 5 ;
-		this.next = pageEnd < pageReal;
+		this.next = pageEnd < pageTotal;
 	}
 	
 	public String makeQuery(int num) {
-		UriComponentsBuilder uri = UriComponentsBuilder.newInstance()
+		UriComponents uri = UriComponentsBuilder.newInstance()
 												.queryParam("num", num)
-												.queryParam("pageView", this.getPageView());
-			if (searchType!=null) {
-				uri
-					.queryParam("searchType", this.getSearchType())
-					.queryParam("keyword", this.getKeyword());
-			}
-			
-			
-		return uri.build().encode().toString();
+												.queryParam("pageView", this.getPageView())
+												.build();
+		return uri.toString();
 	}
-	
 }
